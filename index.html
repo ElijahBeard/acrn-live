@@ -10,17 +10,19 @@
     <link rel="stylesheet" href="index.css" />
     <link href='fullcalendar/main.css' rel='stylesheet' />
 </head>
+
 <header>
-    <section class="top">
-            <div class="topleft">
-            </div>
+    <section class="topNav">
+        
             <div class="bubble">
                 <img src="./src/bubble.png">
             </div>
-            <div class="middle">
+
+            <div class="lobster">
                 <img src="./src/acrn-rocklob.png">
             </div>
-            <div class="topright">
+
+            <div class="rightNav">
                 <button class="NAV">
                     <a href="https://acrn.com">Back to ACRN.com</a>
                     <i class="fa-solid fa-arrow-right"></i>
@@ -35,60 +37,78 @@
                     </p>
                 </div>
             </div>
-        </section>
-    </header>
-    <body>
-        <section class="left"> 
-            <div class="liveStatus">
-                <div class="PLAYER">
-                    <button id="play" onclick="toggleMute(), changeicon();"><i class="fa-solid fa-play"></i></button>
-                    <audio id="Astream" autoplay muted>
-                        <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
-                    </audio>
-                    <video id="Vstream" autoplay muted>
-                        <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
-                    </video>
-                    <script>
-                        function toggleMute() {
-                
-                            var video=document.getElementById("Vstream")
-                            var audio=document.getElementById("Astream")
-                            if(video.muted){
-                                video.muted = false;
-                            } else {
-                                video.muted = true;
-                            }
-                            if(audio.muted){
-                                audio.muted = false;
-                            } else {
-                                audio.muted = true;
-                            }
-                            
+
+    </section>
+</header>
+
+<!--STREAM OBJECTS LOCATED HERE-->
+<body>
+    <!--centova stream objects-->
+    <section class="centStream"> 
+        <div class="liveStatus">
+            <div class="PLAYER">
+
+                <!--PLAY BUTTON TOGGLES MUTE FUNCTION AND CHANGEICON FUNCTION LOCATED IN THIS DIV-->
+                <button id="play" onclick="toggleMute(), changeicon();"><i class="fa-solid fa-play"></i></button>
+
+                <!--TWO SOURCES AUDIO/VIDEO CENTOVA STREAM CONTROLLED BY SCRIPT BELOW-->
+                <audio id="Astream" autoplay muted>
+                    <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
+                </audio>
+                <video id="Vstream" autoplay muted>
+                    <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
+                </video>
+
+                <!--LOGIC FOR PAUSING AND PLAYING STREAM AS WELL AS REPLACING ICONS-->
+                <script>
+                    function toggleMute() {
+            
+                        var video=document.getElementById("Vstream")
+                        var audio=document.getElementById("Astream")
+                        if(video.muted){
+                            video.muted = false;
+                        } else {
+                            video.muted = true;
                         }
-                        function changeicon() {
-                            var play = document.getElementById("play");
-                            var video=document.getElementById("Vstream")
-                            var audio=document.getElementById("Astream")
-                            console.log(play.innerHTML);
-                            if(play.innerHTML == '<i class="fa-solid fa-pause"></i>'){
-                                play.innerHTML = '<i class="fa-solid fa-play"></i>';
-                                audio.pause();
-                            }
-                            else if(play.innerHTML == '<i class="fa-solid fa-play"></i>'){
-                                play.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                                audio.play();
-                            }
+                        if(audio.muted){
+                            audio.muted = false;
+                        } else {
+                            audio.muted = true;
                         }
-                    </script>
-            </div>
-        </section>
-        <section class="right">
-            <div class="CHAT">
-                <script id="cid0020000322445555671" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"acrnmed","arch":"js","styles":{"a":"292c2f","b":100,"c":"FFFFFF","d":"FFFFFF","k":"292c2f","l":"292c2f","m":"292c2f","n":"FFFFFF","p":"10","q":"292c2f","r":100,"t":0,"surl":0,"allowpm":0}}</script>
-            </div>
-        </section>
-        <div class="marquee">
-            <p></p>
+                        
+                    }
+                    function changeicon() {
+                        var play = document.getElementById("play");
+                        var video=document.getElementById("Vstream")
+                        var audio=document.getElementById("Astream")
+                        console.log(play.innerHTML);
+                        if(play.innerHTML == '<i class="fa-solid fa-pause"></i>'){
+                            play.innerHTML = '<i class="fa-solid fa-play"></i>';
+                            audio.pause();
+                        }
+                        else if(play.innerHTML == '<i class="fa-solid fa-play"></i>'){
+                            play.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                            audio.play();
+                        }
+                    }
+                </script>
         </div>
-    </body>
-    </html>
+    </section>
+    <section class="liveChat">
+        <div class="CHAT">
+            <!--chat ran off of chatango service script-->
+            <script id="cid0020000322445555671" 
+                data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
+                style="width: 100%;height: 100%;">{"handle":"acrnmed","arch":
+                "js","styles":{"a":"292c2f","b":100,"c":"FFFFFF","d":"FFFFFF",
+                "k":"292c2f","l":"292c2f","m":"292c2f","n":"FFFFFF","p":"10",
+                "q":"292c2f","r":100,"t":0,"surl":0,"allowpm":0}}
+            </script>
+        </div>
+    </section>
+    <section class="footer">
+        <p><!--empty--></p>
+    </section>
+</body>
+
+</html>

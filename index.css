@@ -1,8 +1,10 @@
-
 body {
     font-family: "PT Sans",sans-serif;
     margin:0px;
 }
+
+/* FROM TOP TO CHAT */
+
 header {
     width: 100%;
     height: 90px;
@@ -21,11 +23,11 @@ header a {
     color: white;
     text-decoration: none;
 }
-.top {
+.topNav {
     display: flex;
     justify-content: space-between;
 }
-.middle img {
+.lobster img {
     position: absolute;
     top: 29px;
     left: 30px;
@@ -33,7 +35,7 @@ header a {
     padding: 0px;
 
 }
-header .top .topleft {
+header .topNav .topleft {
     display: flex;
     align-items: center;
 }
@@ -45,7 +47,7 @@ header button {
     overflow: hidden;
     outline: none;
 }
-header .top .topright {
+header .topNav .rightNav {
     opacity: 1;
     display: flex;
     justify-content: center;
@@ -55,13 +57,13 @@ header .top .topright {
     border-radius: 30px;
     align-items: center;
 }
-.top a {
+.topNav a {
     padding: 10px;
     position: relative;
     transition: 0.5s;
     opacity: 0.5;
 }
-.top i {
+.topNav i {
     color: white;
 }
 .NAV:hover a {
@@ -73,16 +75,13 @@ header .top .topright {
     right: 0;
 }
 
-body
-{   
-    margin: 0px;
-}
+
 @keyframes live {
     0% {    background-color: rgb(169, 35, 35);}
     50% {background-color: rgb(223, 0, 0);}
     100% {    background-color: rgb(169, 35, 35);}
 }
-body .left {
+body .centStream {
     height: 30px;
     border: 3px;
     border-left:0;
@@ -98,7 +97,7 @@ body .left {
     margin:0;
     padding:0;
 }
-body .left button {
+body .centStream button {
     position: absolute;
     left: 120px;
     top: 93px;
@@ -112,10 +111,10 @@ body .left button {
     border-style: solid;
     cursor: pointer;
 }
-body .left video {
+body .centStream video {
     height: 0px;
 }
-body .left p {
+body .centStream p {
     display: flex;
     margin:0;
     text-align: center;
@@ -123,13 +122,15 @@ body .left p {
     color: white;
     align-items: center;
 }
-body .right {
+
+
+body .liveChat {
     display: flex;
     height: 80vh;
     color: black;
     margin:0;
 }
-body .right .CHAT {
+body .liveChat .CHAT {
     opacity: 1;
     width: 100%;
     margin:0;
@@ -138,11 +139,9 @@ body .right .CHAT {
     display: flex;
     flex-direction: row;
 }
-.right {
-    margin:0;
-    padding:0;
-}
-.marquee {
+
+
+.footer {
     line-height: 1px;
     background-color: #292c2f;
 	color: white;
@@ -150,15 +149,13 @@ body .right .CHAT {
     overflow: hidden;
     box-sizing: border-box;
 }
-.marquee p {
+.footer p {
     display: inline-block;
     padding-left: 100%;
     animation: marquee 35s linear infinite;
 }
-@keyframes marquee {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
-}
+
+
 .INFO {
     position: absolute;
     top:68px;
