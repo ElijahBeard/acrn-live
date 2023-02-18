@@ -5,51 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listen Live!</title>
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
-    <link rel="stylesheet" href="index.css" />>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
+    <link rel="stylesheet" href="index.css" />
+    <script src="./player_logic.js"></script>
+    <script type="module" src="./song_getter.js"></script>
 </head>
-<!--testing testing-->
-<header>
-    <section class="topNav">
-        
-            <div class="bubble">
-                <img src="./src/bubble.png">
-            </div>
 
-            <div class="lobster">
-                <img src="./src/acrn-rocklob.png">
-            </div>
-
-            <div class="rightNav">
-                <button class="NAV">
-                    <a href="https://acrn.com">Back to ACRN.com</a>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-                <div class="IN">
-                    <button class="INFO">
-                        <a href="http://centova87.instainternet.com:8134/stream">STREAM BYPASS</a>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </button>
-                    <p class="INFOP">
-                        If the online audio stream isnt <br> isnt working on your device, try this link <br> to the raw audio stream.
-                    </p>
-                </div>
-            </div>
-
-    </section>
-</header>
-
-<!--STREAM OBJECTS LOCATED HERE-->
 <body>
-    <!--centova stream objects-->
-    <section class="centStream"> 
-        <div class="liveStatus">
-            <div class="PLAYER">
-
+    
+    <div class="s_recording">
+        <div class="s_header">
+            <div class="play_header">
+                <h4 style="margin-left:15px;">LIVE NOW</h4>
+                
+            <div class="player">
+        
                 <!--PLAY BUTTON TOGGLES MUTE FUNCTION AND CHANGEICON FUNCTION LOCATED IN THIS DIV-->
                 <button id="play" onclick="toggleMute(), changeicon();"><i class="fa-solid fa-play"></i></button>
-
+        
                 <!--TWO SOURCES AUDIO/VIDEO CENTOVA STREAM CONTROLLED BY SCRIPT BELOW-->
                 <audio id="Astream" autoplay muted>
                     <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
@@ -57,45 +30,19 @@
                 <video id="Vstream" autoplay muted>
                     <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
                 </video>
-
-                <!--LOGIC FOR PAUSING AND PLAYING STREAM AS WELL AS REPLACING ICONS-->
-                <script>
-                    function toggleMute() {
-            
-                        var video=document.getElementById("Vstream")
-                        var audio=document.getElementById("Astream")
-                        if(video.muted){
-                            video.muted = false;
-                        } else {
-                            video.muted = true;
-                        }
-                        if(audio.muted){
-                            audio.muted = false;
-                        } else {
-                            audio.muted = true;
-                        }
-                        
-                    }
-                    function changeicon() {
-                        var play = document.getElementById("play");
-                        var video=document.getElementById("Vstream")
-                        var audio=document.getElementById("Astream")
-                        console.log(play.innerHTML);
-                        if(play.innerHTML == '<i class="fa-solid fa-pause"></i>'){
-                            play.innerHTML = '<i class="fa-solid fa-play"></i>';
-                            audio.pause();
-                        }
-                        else if(play.innerHTML == '<i class="fa-solid fa-play"></i>'){
-                            play.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                            audio.play();
-                        }
-                    }
-                </script>
+            </div>
         </div>
-    </section>
-    <section class="liveChat">
-        <div class="CHAT">
-            <!--chat ran off of chatango service script-->
+        <p class="current_dj" id="displayname"><p>
+        <div class="options">
+            <a><p>Stream Archive</p></a>
+            <a><p>Schedule</p></a>
+        </div>
+        </div>
+        <img class="snat" src="./src/acrn-rocklob.png">
+    </div>
+
+    <div class="s_body">
+        <div class="chat">
             <script id="cid0020000322445555671" 
                 data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
                 style="width: 100%;height: 100%;">{"handle":"acrnmed","arch":
@@ -104,10 +51,68 @@
                 "q":"292c2f","r":100,"t":0,"surl":0,"allowpm":0}}
             </script>
         </div>
-    </section>
-    <section class="footer">
-        <p><!--empty--></p>
-    </section>
-</body>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+        
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+            apiKey: "AIzaSyA0pjm7leanbi1UU4sXyx555_0JOXxOL_Y",
+            authDomain: "acrnlive.firebaseapp.com",
+            databaseURL: "https://acrnlive-default-rtdb.firebaseio.com",
+            projectId: "acrnlive",
+            storageBucket: "acrnlive.appspot.com",
+            messagingSenderId: "258115656525",
+            appId: "1:258115656525:web:b742cafda5e4d098743504",
+            measurementId: "G-MB0TLV988M"
+            };
+        
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        
+            import {getDatabase, set, get, update, remove, ref, child} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
+        
+            const db = getDatabase();
 
+            var name = document.getElementById("#name");
+            var entertrack = document.getElementById("#track");
+            var enterartist = document.getElementById("#artist");
+            var findtrack = document.getElementById("#findtrack");
+            var findartist = document.getElementById("#findartist");
+            
+            var setsong = document.getElementById("#setsong");
+            var getsong = document.getElementById("#getsong");
+            var removesong = document.getElementById("#remove");
+        
+            function set_song(){
+                set(ref(db, "Songs/" + name.value), {
+                    Name: name.value,
+                    Track: entertrack.value,
+                    Artist: enterartist.value 
+                })
+                .then(()=>{
+                    alert("song added successfully")
+                })
+                .catch((error)=>{
+                    alert(error)
+                });
+            }
+            function get_song(){
+        
+            }
+            function remove_song(){
+        
+            }
+        
+            setsong.addEventListener('click', set_song);
+            getsong.addEventListener('click', get_song);
+            removesong.addEventListener('click', remove_song);
+    </script>
+</body>
 </html>
