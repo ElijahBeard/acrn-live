@@ -1,9 +1,11 @@
+
 body{
     display:flex;
     flex-direction: column;
     font-family: "PT Sans",sans-serif;
     margin:0px;
     color:white;
+
 }
 body i {
     color: white;
@@ -37,6 +39,7 @@ body i {
     justify-content: right;
     align-items: center;
     flex-grow:1;
+    opacity:0;
 }
 .options a{
     margin-right:20px;
@@ -45,8 +48,10 @@ img{
     position:absolute;
     width:180px;
     height:130px;
-    right:-20px;
     top:-23px;
+    right:2px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 @keyframes live {
     0% {background-color: rgb(200, 40, 40);}
@@ -70,18 +75,44 @@ button {
 .s_body {
     display:flex;
     height:92vh;
+    width:100%;
+    margin:0px;
 }
 .chat{
     display:flex;
     flex-grow:1;
+    width:100%;
+    margin:0px;
 }
-.side_bar{
-    margin:20px;
-    width:20%;
-}
-@media screen and (max-width: 610px){
+
+@media screen and (max-width: 622px){
     .s_header{
         display:flex;
-        justify-content: center;
+        margin-right:0px;
+    }
+    .play_header {
+        display:flex;
+        flex-direction: row;
+        justify-content:left;
+        align-items: center;
+    }
+    .current_dj{
+        display:flex;
+        justify-content: right;
+        align-items: center;
+        width:0px;
+        margin-right:20px;
+        width:3px;
+    }
+    .options{
+        position:absolute;
+        opacity:0;
+        right:2000px;
+    }
+    .options a{
+        margin-right:0px;
+    }
+    img{
+        opacity:0;
     }
 }
