@@ -1,22 +1,22 @@
 function toggleMute() {
             
-    var video=document.getElementById("Vstream")
-    if(video.muted){
-        video.muted = false;
+    var audio=document.getElementById("Astream")
+    if(audio.muted){
+        audio.muted = false;
     } else {
-        video.muted = true;
+        audio.muted = true;
     }
 }
 function changeicon() {
     var play = document.getElementById("play");
-    var video=document.getElementById("Vstream")
+    var audio=document.getElementById("Astream")
     console.log(play.innerHTML);
     if(play.innerHTML == '<i class="fa-solid fa-pause"></i>'){
         play.innerHTML = '<i class="fa-solid fa-play"></i>';
-        video.pause();
+        audio.pause();
     }
     else if(play.innerHTML == '<i class="fa-solid fa-play"></i>'){
         play.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        video.play();
+        audio.play();
     }
 }

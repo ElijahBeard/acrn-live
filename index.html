@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Listen Live!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
     <link rel="stylesheet" href="index.css" />
@@ -19,7 +19,6 @@
                 <h4 style="margin-left:15px;">LIVE NOW</h4>
                 
             <div class="player">
-        
                 <!--PLAY BUTTON TOGGLES MUTE FUNCTION AND CHANGEICON FUNCTION LOCATED IN THIS DIV-->
                 <button id="play" onclick="toggleMute(), changeicon();"><i class="fa-solid fa-play"></i></button>
         
@@ -27,9 +26,6 @@
                 <audio id="Astream" autoplay muted>
                     <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
                 </audio>
-                <video id="Vstream" autoplay muted>
-                    <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
-                </video>
             </div>
         </div>
         <p class="current_dj" id="displayname"><p>

@@ -7,12 +7,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCHdsBxqMOrK_h410mm23zirTE4hchQSFw",
-    authDomain: "stable-db.firebaseapp.com",
-    projectId: "stable-db",
-    storageBucket: "stable-db.appspot.com",
-    messagingSenderId: "362097743711",
-    appId: "1:362097743711:web:1dc055477c6ba76f9fc8ea"
+    apiKey: "AIzaSyA0pjm7leanbi1UU4sXyx555_0JOXxOL_Y",
+    authDomain: "acrnlive.firebaseapp.com",
+    databaseURL: "https://acrnlive-default-rtdb.firebaseio.com",
+    projectId: "acrnlive",
+    storageBucket: "acrnlive.appspot.com",
+    messagingSenderId: "258115656525",
+    appId: "1:258115656525:web:b742cafda5e4d098743504",
+    measurementId: "G-MB0TLV988M"
 };
 
 // Initialize Firebase
