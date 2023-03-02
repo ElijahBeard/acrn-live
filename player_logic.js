@@ -1,22 +1,37 @@
-function toggleMute() {
-            
-    var audio=document.getElementById("Astream")
-    if(audio.muted){
-        audio.muted = false;
+document.addEventListener('DOMContentLoaded', function() {
+    var slider = document.getElementById("bar");
+    slider.oninput = function() {
+        console.log(slider.value / 100);
+        const audio = document.getElementById('streamAudio');
+        audio.volume = (slider.value / 100);
+    }
+});
+
+
+
+function toggleAudio() {
+    const audio = document.getElementById('streamAudio');
+    const play = document.getElementById('play');
+
+    try {
+    audio.play();
+    } catch (e) {
+    console.error(e);
+    }
+    
+    if (audio.paused) {
+    play.innerHTML = '<i class="fa-solid fa-play"></i>';
     } else {
-        audio.muted = true;
+    play.innerHTML = '<i class="fa-solid fa-pause"></i>';
     }
-}
-function changeicon() {
-    var play = document.getElementById("play");
-    var audio=document.getElementById("Astream")
-    console.log(play.innerHTML);
-    if(play.innerHTML == '<i class="fa-solid fa-pause"></i>'){
-        play.innerHTML = '<i class="fa-solid fa-play"></i>';
-        audio.pause();
-    }
-    else if(play.innerHTML == '<i class="fa-solid fa-play"></i>'){
-        play.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    
+    play.addEventListener('click', () => {
+    if (audio.paused) {
         audio.play();
+        play.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
+        audio.pause();
+        play.innerHTML = '<i class="fa-solid fa-play"></i>';
     }
+    });
 }

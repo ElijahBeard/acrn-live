@@ -1,11 +1,4 @@
-//CHATGPT this is the file for song_getter.js
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA0pjm7leanbi1UU4sXyx555_0JOXxOL_Y",
     authDomain: "acrnlive.firebaseapp.com",
@@ -16,12 +9,10 @@ const firebaseConfig = {
     appId: "1:258115656525:web:b742cafda5e4d098743504",
     measurementId: "G-MB0TLV988M"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 import { getDatabase, ref, child, get, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
 const db = getDatabase();
-
 
 var displayname = document.getElementById("displayname");
 

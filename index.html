@@ -20,13 +20,15 @@
                 
             <div class="player">
                 <!--PLAY BUTTON TOGGLES MUTE FUNCTION AND CHANGEICON FUNCTION LOCATED IN THIS DIV-->
-                <button id="play" onclick="toggleMute(), changeicon();"><i class="fa-solid fa-play"></i></button>
-        
+                <button id="play" onclick="toggleAudio()"><i class="fa-solid fa-play"></i></button>
                 <!--TWO SOURCES AUDIO/VIDEO CENTOVA STREAM CONTROLLED BY SCRIPT BELOW-->
-                <audio id="Astream" autoplay muted>
-                    <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
+                <audio id="streamAudio" src="http://centova87.instainternet.com:8134/stream" preload="auto">
                 </audio>
             </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="100" class="slider" id="bar">
+            </div>
+            
         </div>
         <p class="current_dj" id="displayname"><p>
         <div class="options">
