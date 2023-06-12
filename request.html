@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIENT</title>
+    <script type="module" src="./client_request.js"></script>
+</head>
+<body>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin:100px;
+            color:white;
+            background-color: black;
+        }
+        button{
+            margin:7px;
+            margin-top:20px;
+            background-color: transparent;
+            color:white;
+            border-style: none;
+        }
+        body div{
+            margin: 30px;
+        }
+    </style>
+    <div class="client_set">
+        <p>DJ-LOG-IN</p>
+        <p></p>
+        <input type="text" id="name"><br>
+        <button id="setsong">LOGIN</button>
+        <button id="signout">LOGOUT</button>
+    </div>
+</body>
+</html>

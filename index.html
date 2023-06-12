@@ -3,112 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Listen Live!</title>
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
-    <link rel="stylesheet" href="index.css" />
-    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <link rel="icon" type="image/x-icon" href="/acrn-rocklob.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
+    <link rel="stylesheet" href="live.css" />
+    <script src="/live.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/jquery.jplayer.min.js"></script>
+    <script>
+      $(document).ready(function() {
+      var jPlayerInstance = $("#jplayer").jPlayer({
+          ready: function() {
+          $(this).jPlayer("setMedia", {
+              title: "Your Stream Title",
+              mp3: "http://centova87.instainternet.com/proxy/greg/stream" // Replace with your actual stream URL
+          });
+          },
+          swfPath: "https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/Jplayer.swf",
+          supplied: "mp3",
+          useStateClassSkin: true,
+          autoBlur: false,
+          keyEnabled: true
+      });
+  
+      var isPlaying = false;
+  
+      $("#play-btn").click(function() {
+          if (!isPlaying) {
+          jPlayerInstance.jPlayer("play");
+          isPlaying = true;
+          } else {
+          jPlayerInstance.jPlayer("pause");
+          isPlaying = false;
+          }
+      });
+  
+      $("#stop-btn").click(function() {
+          jPlayerInstance.jPlayer("stop");
+          isPlaying = false;
+      });
+  
+      jPlayerInstance.on($.jPlayer.event.timeupdate, function(event) {
+          if (event.jPlayer.status.currentTime === 0) {
+          isPlaying = false;
+          }
+      });
+      });
+    </script>
 </head>
-<!--testing testing-->
-<header>
-    <section class="topNav">
-        
-            <div class="bubble">
-                <img src="./src/bubble.png">
-            </div>
-
-            <div class="lobster">
-                <img src="./src/acrn-rocklob.png">
-            </div>
-
-            <div class="rightNav">
-                <button class="NAV">
-                    <a href="https://acrn.com">Back to ACRN.com</a>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-                <div class="IN">
-                    <button class="INFO">
-                        <a href="http://centova87.instainternet.com:8134/stream">STREAM BYPASS</a>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </button>
-                    <p class="INFOP">
-                        If the online audio stream isnt <br> isnt working on your device, try this link <br> to the raw audio stream.
-                    </p>
-                </div>
-            </div>
-
-    </section>
-</header>
-
-<!--STREAM OBJECTS LOCATED HERE-->
-<body>
-    <!--centova stream objects-->
-    <section class="centStream"> 
-        <div class="liveStatus">
-            <div class="PLAYER">
-
-                <!--PLAY BUTTON TOGGLES MUTE FUNCTION AND CHANGEICON FUNCTION LOCATED IN THIS DIV-->
-                <button id="play" onclick="toggleMute(), changeicon();"><i class="fa-solid fa-play"></i></button>
-
-                <!--TWO SOURCES AUDIO/VIDEO CENTOVA STREAM CONTROLLED BY SCRIPT BELOW-->
-                <audio id="Astream" autoplay muted>
-                    <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
-                </audio>
-                <video id="Vstream" autoplay muted>
-                    <source src="http://centova87.instainternet.com:8134/stream" type="audio/mpeg">
-                </video>
-
-                <!--LOGIC FOR PAUSING AND PLAYING STREAM AS WELL AS REPLACING ICONS-->
-                <script>
-                    function toggleMute() {
-            
-                        var video=document.getElementById("Vstream")
-                        var audio=document.getElementById("Astream")
-                        if(video.muted){
-                            video.muted = false;
-                        } else {
-                            video.muted = true;
-                        }
-                        if(audio.muted){
-                            audio.muted = false;
-                        } else {
-                            audio.muted = true;
-                        }
-                        
-                    }
-                    function changeicon() {
-                        var play = document.getElementById("play");
-                        var video=document.getElementById("Vstream")
-                        var audio=document.getElementById("Astream")
-                        console.log(play.innerHTML);
-                        if(play.innerHTML == '<i class="fa-solid fa-pause"></i>'){
-                            play.innerHTML = '<i class="fa-solid fa-play"></i>';
-                            audio.pause();
-                        }
-                        else if(play.innerHTML == '<i class="fa-solid fa-play"></i>'){
-                            play.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                            audio.play();
-                        }
-                    }
-                </script>
+<body scroll="no">
+    <div>
+        <div class="header">
+            <a href="https://acrn.com/"><i class="fa-sharp fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+            <img id="logo" src="/ACRN-LOGO.png">
         </div>
-    </section>
-    <section class="liveChat">
-        <div class="CHAT">
-            <!--chat ran off of chatango service script-->
+        <div class="livestream">
+            <div class="playhead">
+                <div id="jplayer"></div>
+                <i id="circle" class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i>
+                <div class="player">
+                    <button id="play-btn"><i class="fa-sharp fa-solid fa-play"></i></i></button>
+                </div>
+                <marquee behavior="" direction="">Now Playing: &nbsp ACRN INTERNET RADIO &nbsp &nbsp |  &nbsp &nbsp@acrnmedia &nbsp &nbsp  &nbsp</marquee>
+                <script src="./live.js"></script>
+                <script>
+                    playlogic('play-btn');
+                </script>
+            </div>
+        </div>
+        <div class="cover">d</div>
+        <div class="chat">
+            <img id="snat" src="/acrn-rocklob.png">
             <script id="cid0020000322445555671" 
                 data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
                 style="width: 100%;height: 100%;">{"handle":"acrnmed","arch":
-                "js","styles":{"a":"292c2f","b":100,"c":"FFFFFF","d":"FFFFFF",
+                "js","styles":{"a":"000000","b":100,"c":"FFFFFF","d":"FFFFFF",
                 "k":"292c2f","l":"292c2f","m":"292c2f","n":"FFFFFF","p":"10",
-                "q":"292c2f","r":100,"t":0,"surl":0,"allowpm":0}}
+                "q":"000000","r":100,"t":0,"surl":0,"allowpm":0}}
             </script>
         </div>
-    </section>
-    <section class="footer">
-        <p><!--empty--></p>
-    </section>
+    </div>
 </body>
-
 </html>
