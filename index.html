@@ -5,112 +5,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Listen Live!</title>
+    <link rel="icon" type="image/x-icon" href="/acrn-rocklob.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
-    <link rel="stylesheet" href="index.css" />
-    <script src="./player_logic.js"></script>
-    <script type="module" src="./song_getter.js"></script>
+    <link rel="stylesheet" href="live.css" />
+    <script src="/live.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/jquery.jplayer.min.js"></script>
+    <script>
+      $(document).ready(function() {
+      var jPlayerInstance = $("#jplayer").jPlayer({
+          ready: function() {
+          $(this).jPlayer("setMedia", {
+              title: "Your Stream Title",
+              mp3: "http://centova87.instainternet.com/proxy/greg/stream" // Replace with your actual stream URL
+          });
+          },
+          swfPath: "https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/Jplayer.swf",
+          supplied: "mp3",
+          useStateClassSkin: true,
+          autoBlur: false,
+          keyEnabled: true
+      });
+  
+      var isPlaying = false;
+  
+      $("#play-btn").click(function() {
+          if (!isPlaying) {
+          jPlayerInstance.jPlayer("play");
+          isPlaying = true;
+          } else {
+          jPlayerInstance.jPlayer("pause");
+          isPlaying = false;
+          }
+      });
+  
+      $("#stop-btn").click(function() {
+          jPlayerInstance.jPlayer("stop");
+          isPlaying = false;
+      });
+  
+      jPlayerInstance.on($.jPlayer.event.timeupdate, function(event) {
+          if (event.jPlayer.status.currentTime === 0) {
+          isPlaying = false;
+          }
+      });
+      });
+    </script>
 </head>
-
-<body>
-    
-    <div class="s_recording">
-        <div class="s_header">
-            <div class="play_header">
-                <h4 style="margin-left:15px;">LIVE NOW</h4>
-                
-            <div class="player">
-                <!--PLAY BUTTON TOGGLES MUTE FUNCTION AND CHANGEICON FUNCTION LOCATED IN THIS DIV-->
-                <button id="play" onclick="toggleAudio()"><i class="fa-solid fa-play"></i></button>
-                <!--TWO SOURCES AUDIO/VIDEO CENTOVA STREAM CONTROLLED BY SCRIPT BELOW-->
-                <audio id="streamAudio" src="http://centova87.instainternet.com:8134/stream/;" type="audio/mpeg" preload="auto">
-                </audio>
+<body scroll="no">
+    <div>
+        <div class="header">
+            <a href="https://acrn.com/"><i class="fa-sharp fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+            <img id="logo" src="/ACRN-LOGO.png">
+        </div>
+        <div class="livestream">
+            <div class="playhead">
+                <div id="jplayer"></div>
+                <i id="circle" class="fa-solid fa-circle fa-fade" style="color: #ff0000;"></i>
+                <div class="player">
+                    <button id="play-btn"><i class="fa-sharp fa-solid fa-play"></i></i></button>
+                </div>
+                <marquee behavior="" direction="">Now Playing: &nbsp ACRN INTERNET RADIO &nbsp &nbsp |  &nbsp &nbsp@acrnmedia &nbsp &nbsp  &nbsp</marquee>
+                <script src="./live.js"></script>
+                <script>
+                    playlogic('play-btn');
+                </script>
             </div>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="100" class="slider" id="bar">
-            </div>
-            
         </div>
-        <p class="current_dj" id="displayname"><p>
-        <div class="options">
-            <a><p></p></a>
-            <a><p>Schedule</p></a>
-        </div>
-        <p></p>
-        </div>
-        <img class="snat" src="./src/acrn-rocklob.png">
-    </div>
-    <div class="s_body">
+        <div class="cover">d</div>
         <div class="chat">
+            <img id="snat" src="/acrn-rocklob.png">
             <script id="cid0020000322445555671" 
                 data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
                 style="width: 100%;height: 100%;">{"handle":"acrnmed","arch":
-                "js","styles":{"a":"292c2f","b":100,"c":"FFFFFF","d":"FFFFFF",
+                "js","styles":{"a":"000000","b":100,"c":"FFFFFF","d":"FFFFFF",
                 "k":"292c2f","l":"292c2f","m":"292c2f","n":"FFFFFF","p":"10",
-                "q":"292c2f","r":100,"t":0,"surl":0,"allowpm":0}}
+                "q":"000000","r":100,"t":0,"surl":0,"allowpm":0}}
             </script>
         </div>
     </div>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-        
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-            apiKey: "AIzaSyA0pjm7leanbi1UU4sXyx555_0JOXxOL_Y",
-            authDomain: "acrnlive.firebaseapp.com",
-            databaseURL: "https://acrnlive-default-rtdb.firebaseio.com",
-            projectId: "acrnlive",
-            storageBucket: "acrnlive.appspot.com",
-            messagingSenderId: "258115656525",
-            appId: "1:258115656525:web:b742cafda5e4d098743504",
-            measurementId: "G-MB0TLV988M"
-            };
-        
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-        
-            import {getDatabase, set, get, update, remove, ref, child} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
-        
-            const db = getDatabase();
-
-            var name = document.getElementById("#name");
-            var entertrack = document.getElementById("#track");
-            var enterartist = document.getElementById("#artist");
-            var findtrack = document.getElementById("#findtrack");
-            var findartist = document.getElementById("#findartist");
-            
-            var setsong = document.getElementById("#setsong");
-            var getsong = document.getElementById("#getsong");
-            var removesong = document.getElementById("#remove");
-        
-            function set_song(){
-                set(ref(db, "Songs/" + name.value), {
-                    Name: name.value,
-                    Track: entertrack.value,
-                    Artist: enterartist.value 
-                })
-                .then(()=>{
-                    alert("song added successfully")
-                })
-                .catch((error)=>{
-                    alert(error)
-                });
-            }
-            function get_song(){
-        
-            }
-            function remove_song(){
-        
-            }
-        
-            setsong.addEventListener('click', set_song);
-            getsong.addEventListener('click', get_song);
-            removesong.addEventListener('click', remove_song);
-    </script>
 </body>
 </html>
