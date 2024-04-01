@@ -1,0 +1,43 @@
+body {
+    background-color: black;
+    color:white;
+    font-family:monospace;
+    /*overflow: hidden;*/
+}
+.wrapper {
+    width:60vw
+}
+
+.calendar {
+    display:flex;
+    flex-direction:row;
+    width:60vw;
+}
+
+.day {
+    margin-left:10px;
+    margin-right:5px;
+    display:flex;
+    flex-direction: column;
+}
+.block_entry {
+    background-color: blue;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.time {
+    margin:0;
+    padding:0;
+}
+.name {
+    margin:0;
+    padding:0;
+}
+
+/* Mobile Space */
+@media only screen and (max-width: 600px) {
+    .calendar {
+        display:unset;
+        width:60vw;
+    }
+}

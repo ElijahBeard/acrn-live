@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Listen Live!</title>
+
+    <link rel="icon" type="image/x-icon" href="/acrn-rocklob.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">  
+    <link rel="stylesheet" href="index.css">
+</head>
+<!--
+    Welcome to hopefully not as a mess of a website.
+    Currently the design is avaliable here:
+    https://drive.google.com/drive/folders/10wCcgcqWorfgqAtVb7B7o8i7IB-GatZn?usp=sharing
+    
+    Site elements are basic html css javascript integrated via firebase. lets start :)
+-->
+<body>
+    <div class="left_main">
+        <!--
+            Contains all elements on the left side of the page [liveplayer and chat]
+        -->
+        <div class="live_header">
+            <!--
+                Contains Live visual elements and stream link 
+            -->
+            <p>LIVE</p>
+            <button id="play_button">
+                <i class="fa-sharp fa-solid fa-play"></i></i>
+            </button>
+            <marquee id="current">there is text that goes here that scrolls</marquee>
+            <video id="stream">
+                <source src="https://streamer.radio.co/s319507a6f/listen"
+                type="audio/mpeg">
+            </video>
+            <button id="history_button">
+                <i id="history" class="fa-solid fa-clock-rotate-left"></i>
+            </button>
+            <script src="./playbutton.js"></script>
+        </div>
+        <!--
+            
+            This div contains chatango api live chat its a copy paste. you can replace it with any chatango chat
+
+        -->
+        <div class="chat">
+            <script id="cid0020000322445555671" 
+            data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js"
+            style="width: 100%;height: 100%;">{"handle":"acrnmed","arch":
+            "js","styles":{"a":"000000","b":100,"c":"FFFFFF","d":"FFFFFF",
+            "k":"292c2f","l":"292c2f","m":"292c2f","n":"FFFFFF","p":"10",
+            "q":"000000","r":100,"t":0,"surl":0,"allowpm":0}}
+            </script>
+        </div>
+        <div class="chat_overlay"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var chatFrame = document.querySelector(".chat iframe");
+                var chatOverlay = document.querySelector(".chat-overlay");
+            
+                if (chatFrame && chatOverlay) {
+                    // Add a touch event listener to the overlay
+                    chatOverlay.addEventListener("touchstart", function(event) {
+                        // Prevent default behavior of touch event
+                        event.preventDefault();
+                    });
+                }
+            });
+        </script>
+    </div>
+    <div id="recents" class="right_main">
+        <!--
+            This div contains all elements on the right side of the page [recent tracks donate and shows]
+        -->
+        <div class="title"> 
+            <button id="history_button_b">
+                <i id="history" class="fa-solid fa-clock-rotate-left"></i>
+            </button>
+            <p id="recent_title">recent tracks</p>
+        </div>
+        <div  class="recent_tracks">
+            <div class="track_updater">
+                <ul id="songs_list">
+                    <!--This javascript file populates songs list with the 25 
+                        most recent songs. Its a long list so it
+                    -->
+                    <script src="./disp_list.js"></script>
+                </ul>
+            </div>
+        </div>
+        <div class="info">
+            <a style="color:white; a::visited{color:white;}" href=""><i class="fa-solid fa-circle-info"></i></a>
+        </div>
+    </div>
+</body>
+<script src="/song_data.js"></script>
+<script src="./historybutton.js"></script>
+</html>
