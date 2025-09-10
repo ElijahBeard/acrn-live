@@ -2,10 +2,13 @@
     import Cablelogo from "./cablelogo.svelte";
     import Player from "./player.svelte";
     import Radio from "./radio.svelte";
+    import History from "./history.svelte";
 </script>
 
-<Cablelogo/>
-<Player/>
+<div class="player">
+    <Cablelogo/>
+    <Player/>
+</div>
 <div class="radio">
     <Radio/>
 </div>
@@ -20,7 +23,7 @@
             </script>
         </div>
         <div class="history">
-
+            <History/>
         </div>
 </div>
 
@@ -28,6 +31,9 @@
 :global(body) {
     overflow:hidden;
     background-color: black;
+}
+.player {
+    z-index:5;
 }
 .radio {
     position:absolute;
@@ -42,9 +48,23 @@
     opacity: 0;
 }
 .radio-body {
+    display:flex;
     height:70vh;
 }
 .chat {
-    height:100%;
+    overflow:hidden;
+    margin-top:0px;
+    height:80vh;
+    width:70vw;
+}
+@media screen and (max-width:500px) {
+    .chat {
+        display:none;
+    }
+    .radio-body{
+        display:flex;
+        justify-content: center;
+        margin-top:10px;
+    }
 }
 </style>

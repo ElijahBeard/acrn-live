@@ -21,7 +21,7 @@
 
             const json_data = JSON.parse(text);
             const title : string = json_data?.data?.title ?? ' ';
-            now_playing = `${"Now Playing : ".padEnd(5)}${title.padEnd(40)}${"@acrnmedia".padEnd(30)}`;
+            now_playing = `${"Now Playing : ".padEnd(5)}${title.padEnd(100)}`;
         } catch (error) {
             console.error("Cant fetch song data: ", error);
             now_playing = ' '
