@@ -60,6 +60,7 @@
     }
         
     onMount(() => {
+        stream.load()
         fetch_song_data();
         const contentWidth = marquee.scrollWidth;
         const duration = contentWidth / 100;
