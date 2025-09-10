@@ -51,7 +51,8 @@
 }
 #songs_list {
     color:white;
-    margin-left:20px;
+    margin-left:15px;
+    margin-right:15px;
     font-family: "picto", sans-serif;
     font-size:14pt;
 
