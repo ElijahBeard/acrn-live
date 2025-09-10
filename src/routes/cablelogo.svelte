@@ -56,12 +56,12 @@
     .logo-header {
         font-family: "block";
         font-size:40px;
-        background-color: black;
+        background-color: rgba(0, 0, 0, 0.041);
         height: 90px;
         width: 100vw;
-        border-top:2px;
+        border-top:0px;
         border-bottom:2px;
-        border-color:white;
+        border-color:rgb(255, 255, 255);
         border-style:solid;
         margin:0;
         padding:0;
