@@ -73,7 +73,7 @@
                 x: gsap.utils.unitize((x) => parseFloat(x) % (contentWidth / 2))
             }
         });
-        const interval = setInterval(fetch_song_data, 30000);
+        const interval = setInterval(fetch_song_data, 5000);
         return () => clearInterval(interval);
     });
 </script>
