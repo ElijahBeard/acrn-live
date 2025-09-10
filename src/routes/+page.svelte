@@ -57,7 +57,7 @@
     height:80vh;
     width:70vw;
 }
-@media screen and (max-width:500px) {
+@media screen and (max-width:550px) {
     .chat {
         display:none;
     }

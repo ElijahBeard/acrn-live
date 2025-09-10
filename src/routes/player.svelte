@@ -39,10 +39,10 @@
                 stream.volume = 0.25;
                 break;
             case 2:
-                stream.volume = 0.5;
+                stream.volume = 0.50;
                 break;
             case 3:
-                stream.volume = 1.0;
+                stream.volume = 0.80;
                 break;
         }
     }
