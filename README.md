@@ -14,7 +14,7 @@ If you have no experience with a CLI you can download a pre-built version of the
 1. Clone this repo:
    ```bash
    git clone https://github.com/ElijahBeard/acrn-live.git
-   cd <repo-name>
+   cd acrn-live
 2. Install dependencies
     ```bash
     npm install
