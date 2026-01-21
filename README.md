@@ -1,5 +1,5 @@
 # AcrnLive 
-This repository contains the files for [acrnlive.web.app](acrnlive.web.app). The streaming site for Ohio University's student run college internet radio station. This README is made for future maintainers of the site, and provides instructions for setup, hosting migration, and maintainence. 
+This repository contains the files for [https://acrnlive.web.app](https://acrnlive.web.app). The streaming site for Ohio University's student run college internet radio station. This README is made for future maintainers of the site, and provides instructions for setup, hosting migration, and maintainence. 
 # Site Migration Guide
 This project uses:
 - **Svelte CLI (`sv`) v0.9.9**
